@@ -1,24 +1,62 @@
-# README
+### アプリケーション名 <br> エヌ・ストレージ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### アプリケーション概要 <br> このアプリケーションではあなたの旅行の思い出の写真を旅行した都道府県別に保存することができます。
 
-Things you may want to cover:
+### URL <br> https://travel-n-memorie.herokuapp.com/
 
-* Ruby version
+### サンプルユーザー情報 <br> ユーザーeメール: sample@sample.com <br> パスワード: C7B89HzuBe
 
-* System dependencies
+### ご利用方法 <br> 本サービスは会員システムを使用しています。県を選ぶページがログインしたら表示されるので、県を選びます。ページは県別になっており、画像が該当の県のみ登録、表示ができるようになっております。
 
-* Configuration
+## テーブル情報
 
-* Database creation
+## usersテーブル
 
-* Database initialization
+|Column             |Type    |Options      |
+|-------------------|--------|-------------|
+| nickname          | string | null: false |
+| email             | string | null: false unique: true|
+| encrypted_password| string | null: false |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+has_many :memories
 
-* Deployment instructions
 
-* ...
+##  memoriesテーブル
+
+|Column                |Type         |Options      |
+|---------------------|-------------|-------------|
+| description         | text        |             |
+| prefecture_id       | integer     | null: false |
+| user                | reference   | foreign_key: true ｜
+
+
+### Association
+belongs_to :user 
+
+### 今後の実装予定は、画像の詳細ページの記載、削除、更新の実装 ユーザー情報の編集を行います。
+
+### 目指した課題解決 <br>今までの旅行の思い出の写真はどこで撮影した写真なのか分からないことがあったので、それを解決するために作りました。<br>考えているペルソナは趣味が旅行で性別は関係ありません。
+
+* ### 要件定義
+
+  * ユーザー登録機能	ユーザーごとに情報を入れたいのでユーザー認証を入れたい
+  * 画像と文章保存システム(県別)	写真と文章を県別で保存したい
+  * 友達機能	友達と情報共有をしたい
+  * シェア機能	写真を共有したい
+
+* ### 実装機能
+  * ユーザーログイン、サインアップ機能 <br>
+https://user-images.githubusercontent.com/58507009/104494631-0c463c00-561a-11eb-85b6-1984511dee2e.gif
+  * ユーザーログイン機能 <br>
+https://user-images.githubusercontent.com/58507009/104494634-0cded280-561a-11eb-8f2f-974b1681a313.gif
+  * 投稿機能 <br>
+https://user-images.githubusercontent.com/58507009/104494620-07818800-561a-11eb-9512-9164e08b8c28.gif
+  * 画像の表示はユーザー及び県別に行われている
+
+* ### ローカルでの動作方法 <br> 
+  * $ git clone https://github.com/shunta-nomura/travel_app
+  * $ cd travel_app
+  * $ bundle install
+  * $ yarn install
